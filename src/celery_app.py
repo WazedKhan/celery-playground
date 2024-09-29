@@ -10,4 +10,7 @@ def my_task(self):
     print("Hello Celery World!")
 
 
-result = my_task.delay()
+@app.task(bind=True, max_reties=10)
+def countdown_test(self, greeting: str):
+    print("Hey I'm count down..")
+    print(greeting)
